@@ -1,5 +1,7 @@
 import React from 'react';
 
+import TodoItem from './TodoItem';
+
 export default class TodoList extends React.Component {
 
     constructor(props) {
@@ -14,9 +16,8 @@ export default class TodoList extends React.Component {
 
     addTodo(e) {
         e.preventDefault();
-        console.log(this.state.todos)
         this.setState({
-            todos: [this.state.todos, this.state.input]
+            todos: [...this.state.todos, this.state.input]
         })
     }
 
@@ -32,8 +33,8 @@ export default class TodoList extends React.Component {
                 <form onSubmit={this.addTodo}>
                     <input onChange={this.updateItem} type="text" />
                     <button type="submit">Ajouter todo</button>
-                    {this.state.todos.map(todo => (
-                        <div>{todo}</div>
+                    {this.state.todos.map((todo, i) => (
+                        <TodoItem todo={todo} key={i} />
                     ))}
                 </form>
             </div>
